@@ -1,0 +1,289 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class Listado_alumnos extends javax.swing.JFrame {
+
+private javax.swing.JButton boton_buscar;
+private javax.swing.JButton boton_eliminar;
+private javax.swing.JButton boton_modificar;
+private javax.swing.JButton boton_registro;
+private javax.swing.JPanel pannel;
+
+    public Listado_alumnos() {
+        initComponents();
+    }
+
+    @SuppressWarnings("unchecked")
+                          
+    private void initComponents() {
+
+        pannel = new javax.swing.JPanel();
+        boton_registro = new javax.swing.JButton();
+        boton_buscar = new javax.swing.JButton();
+        boton_modificar = new javax.swing.JButton();
+        boton_eliminar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pannel.setBackground(new java.awt.Color(255, 255, 255));
+        pannel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de estudiantes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        boton_registro.setText("Registrar Estudiantes");
+        boton_registro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_registroActionPerformed(evt);
+            }
+        });
+
+        boton_buscar.setText("Busqueda de Estudiante");
+        boton_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscarActionPerformed(evt);
+            }
+        });
+
+        boton_modificar.setText("Modificar Registro");
+        boton_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_modificarActionPerformed(evt);
+            }
+        });
+
+        boton_eliminar.setText("Elimiar Estudiante del Registro");
+        boton_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_eliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pannelLayout = new javax.swing.GroupLayout(pannel);
+        pannel.setLayout(pannelLayout);
+        pannelLayout.setHorizontalGroup(
+            pannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pannelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(boton_registro)
+                .addGap(18, 18, 18)
+                .addComponent(boton_buscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boton_modificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boton_eliminar)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        pannelLayout.setVerticalGroup(
+            pannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pannelLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(pannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(boton_registro)
+                .addComponent(boton_buscar)
+                .addComponent(boton_modificar)
+                .addComponent(boton_eliminar))
+                .addContainerGap(139, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }                    
+    private final int maximo=25;
+    private void boton_registroActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        
+        int cantidad;
+        String numero_matricula;
+        String nombre;
+        String apellido;
+        boolean flag;
+       
+        flag=true;
+        while(flag==true){
+        cantidad=Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos alumnos desea agregar?:"));
+        for (int i = 0; i < 10; i++) {
+            registro.add(new ArrayList<>());
+            }
+        if(cantidad<=maximo){
+            for (int i = 0; i < cantidad; i++) {
+                numero_matricula=JOptionPane.showInputDialog("Ingrese el numero de matricula del alumno "+(i+1)+" :");
+                if (numero_matricula.length()==10) {
+                    nombre=JOptionPane.showInputDialog("Ingrese el nombre del estudiante"+(i+1)+" :");
+                    apellido=JOptionPane.showInputDialog("Ingrese los apellidos del alumno "+(i+1)+" :");
+                    registro.get(0).add(numero_matricula);
+                    registro.get(1).add(nombre);
+                    registro.get(2).add(apellido);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"El numero de matricula tiene que ser de 9 digitos minimo!");
+                    flag=false;
+                }
+            }
+            flag=false;
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"El registro tiene un maximo de 40 estudiantes!","ENTRADA",JOptionPane.WARNING_MESSAGE);
+            flag=false;
+        }
+        if(flag==false){
+            String pregunta;
+            pregunta=JOptionPane.showInputDialog("¿Desea seguir?:(Y/N)");
+            if (pregunta.equalsIgnoreCase("Y")) {
+                flag=true;
+            }
+            else{
+                flag=false;
+            }
+        }            
+        }
+          
+    }                                            
+
+    private void boton_buscarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+     
+        String numero_matricula;
+        int posicion;
+        boolean flag;
+        flag=true;
+        while(flag==true){
+        numero_matricula=JOptionPane.showInputDialog("Ingrese la matricula del estudiante:");
+        if (registro.get(0).contains(numero_matricula)) {
+            posicion=registro.get(0).indexOf(numero_matricula);
+            JOptionPane.showMessageDialog(null,"¡¡Estudiante encontrado!!:\n"+registro.get(0).get(posicion)+"\n"+registro.get(1).get(posicion)+"\n"+registro.get(2).get(posicion),"BUSQUEDA",JOptionPane.INFORMATION_MESSAGE);
+            String pregunta;
+            pregunta=JOptionPane.showInputDialog("¿Desea continuar?:(Y/N)");
+            if (pregunta.equalsIgnoreCase("Y")) {
+                flag=true;
+            }
+            else{
+                flag=false;         
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "¡Estudiante no encontrado!","AVISO",JOptionPane.WARNING_MESSAGE);
+            flag=false;
+        }
+        }
+    }                                          
+
+    private void boton_modificarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+     
+        String numero_matricula;
+        int posicion;
+        boolean flag;
+        flag=true;
+        while(flag==true){
+        numero_matricula=JOptionPane.showInputDialog(null,"Ingrese el numero de matricula del estudiante que desea modificar:","REGISTRO",JOptionPane.PLAIN_MESSAGE);
+        if (registro.get(0).contains(numero_matricula)) {
+            posicion=registro.get(0).indexOf(numero_matricula);
+            String cambio;
+            String cambio_nombre;
+            String cambio_apellidos;
+            cambio=JOptionPane.showInputDialog("¿Que desea modificar?\nNombre(1)\nApellidos(2)");
+            if (cambio.equals("1")) {
+                cambio_nombre=JOptionPane.showInputDialog(null,"Ingrese el nuevo nombre a modificar:","REGISTRO",JOptionPane.PLAIN_MESSAGE);
+                registro.get(1).remove(posicion);
+                registro.get(1).add(posicion,cambio_nombre);
+            }
+            if (cambio.equals("2")) {
+                cambio_apellidos=JOptionPane.showInputDialog("Ingrese un nombre nuevo:");
+                registro.get(2).remove(posicion);
+                registro.get(2).add(posicion,cambio_apellidos);
+            }
+            JOptionPane.showMessageDialog(null,"¡Cambio realizado!:\n"+registro.get(0).get(posicion)+"\n"+registro.get(1).get(posicion)+"\n"+registro.get(2).get(posicion));
+            String pregunta;
+            pregunta=JOptionPane.showInputDialog("¿Desea continuar?:(Y/N)");
+            if (pregunta.equalsIgnoreCase("y")) {
+                flag=true;
+            }
+            else{
+                flag=false;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado!","BUSQUEDA",JOptionPane.WARNING_MESSAGE);
+            flag=false;
+        }
+        }
+        
+    }                                             
+
+    private void boton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+
+        String numero_matricula;
+        int posicion;
+        boolean flag;
+        flag=true;
+        while(flag==true){
+        numero_matricula=JOptionPane.showInputDialog("Ingrese el numero de matricula del estudiante que desea remover:");
+        if (registro.get(0).contains(numero_matricula)) {
+            posicion=registro.get(0).indexOf(numero_matricula);
+            JOptionPane.showMessageDialog(null,"¡Estudiante encontrado!:\n"+registro.get(0).get(posicion)+"\n"+registro.get(1).get(posicion)+"\n"+registro.get(2).get(posicion));
+            String eliminar;
+            eliminar=JOptionPane.showInputDialog("¿Desea eliminar al estudiante?:(Y/N)");
+
+            if (eliminar.equalsIgnoreCase("Y")) {
+               registro.get(0).remove(posicion);
+               registro.get(1).remove(posicion);
+               registro.get(2).remove(posicion);
+               JOptionPane.showMessageDialog(null, "Estudiante removido!");
+            }
+
+            String pregunta;
+            pregunta=JOptionPane.showInputDialog("¿Desea seguir?:(Y/N)");
+            if (pregunta.equalsIgnoreCase("y")) {
+                flag=true;
+            }
+            else{
+                flag=false;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "¡Estudiante no encontrado!","BUSQUEDA",JOptionPane.WARNING_MESSAGE);
+            flag=false;
+        }
+        }
+
+    }                     
+
+                       
+
+    public static void main(String args[]) {
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Listado_alumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Listado_alumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Listado_alumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Listado_alumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Listado_alumnos().setVisible(true);
+            }
+        });
+    }
+                   
+                  
+}
