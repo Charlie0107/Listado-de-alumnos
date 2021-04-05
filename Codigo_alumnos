@@ -7,7 +7,7 @@ public class Listado_alumnos extends javax.swing.JFrame {
 private javax.swing.JButton boton_buscar;
 private javax.swing.JButton boton_eliminar;
 private javax.swing.JButton boton_modificar;
-private javax.swing.JButton boton_registro;
+private javax.swing.JButton boton_listado;
 private javax.swing.JPanel pannel;
 
     public Listado_alumnos() {
@@ -19,7 +19,7 @@ private javax.swing.JPanel pannel;
     private void initComponents() {
 
         pannel = new javax.swing.JPanel();
-        boton_registro = new javax.swing.JButton();
+        boton_listado = new javax.swing.JButton();
         boton_buscar = new javax.swing.JButton();
         boton_modificar = new javax.swing.JButton();
         boton_eliminar = new javax.swing.JButton();
@@ -27,30 +27,30 @@ private javax.swing.JPanel pannel;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pannel.setBackground(new java.awt.Color(255, 255, 255));
-        pannel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de estudiantes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        pannel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de estudiantes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(0, 0, 0))); 
 
-        boton_registro.setText("Registrar Estudiantes");
-        boton_registro.addActionListener(new java.awt.event.ActionListener() {
+        boton_listado.setText("Listado de estudiantes");
+        boton_listado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_registroActionPerformed(evt);
+                boton_listadoActionPerformed(evt);
             }
         });
 
-        boton_buscar.setText("Busqueda de Estudiante");
+        boton_buscar.setText("Busqueda de estudiante");
         boton_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_buscarActionPerformed(evt);
             }
         });
 
-        boton_modificar.setText("Modificar Registro");
+        boton_modificar.setText("Modificar LISTADO");
         boton_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_modificarActionPerformed(evt);
             }
         });
 
-        boton_eliminar.setText("Elimiar Estudiante del Registro");
+        boton_eliminar.setText("Elimiar estudiante del LISTADO");
         boton_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_eliminarActionPerformed(evt);
@@ -63,7 +63,7 @@ private javax.swing.JPanel pannel;
             pannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pannelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(boton_registro)
+                .addComponent(boton_listado)
                 .addGap(18, 18, 18)
                 .addComponent(boton_buscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -77,7 +77,7 @@ private javax.swing.JPanel pannel;
             .addGroup(pannelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(pannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(boton_registro)
+                .addComponent(boton_listado)
                 .addComponent(boton_buscar)
                 .addComponent(boton_modificar)
                 .addComponent(boton_eliminar))
@@ -100,7 +100,7 @@ private javax.swing.JPanel pannel;
         pack();
     }                    
     private final int maximo=25;
-    private void boton_registroActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void boton_listadoActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
         int cantidad;
         String numero_matricula;
@@ -112,7 +112,7 @@ private javax.swing.JPanel pannel;
         while(flag==true){
         cantidad=Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos alumnos desea agregar?:"));
         for (int i = 0; i < 10; i++) {
-            registro.add(new ArrayList<>());
+            LISTADO.add(new ArrayList<>());
             }
         if(cantidad<=maximo){
             for (int i = 0; i < cantidad; i++) {
@@ -120,19 +120,19 @@ private javax.swing.JPanel pannel;
                 if (numero_matricula.length()==10) {
                     nombre=JOptionPane.showInputDialog("Ingrese el nombre del estudiante"+(i+1)+" :");
                     apellido=JOptionPane.showInputDialog("Ingrese los apellidos del alumno "+(i+1)+" :");
-                    registro.get(0).add(numero_matricula);
-                    registro.get(1).add(nombre);
-                    registro.get(2).add(apellido);
+                    LISTADO.get(0).add(numero_matricula);
+                    LISTADO.get(1).add(nombre);
+                    LISTADO.get(2).add(apellido);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"El numero de matricula tiene que ser de 9 digitos minimo!");
+                    JOptionPane.showMessageDialog(null,"¡¡¡El numero de matricula tiene que ser de 9 digitos al menos!!!");
                     flag=false;
                 }
             }
             flag=false;
         }
         else{
-            JOptionPane.showMessageDialog(null,"El registro tiene un maximo de 40 estudiantes!","ENTRADA",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El LISTADO tiene un maximo de 40 estudiantes!","ENTRADA",JOptionPane.WARNING_MESSAGE);
             flag=false;
         }
         if(flag==false){
@@ -157,9 +157,9 @@ private javax.swing.JPanel pannel;
         flag=true;
         while(flag==true){
         numero_matricula=JOptionPane.showInputDialog("Ingrese la matricula del estudiante:");
-        if (registro.get(0).contains(numero_matricula)) {
-            posicion=registro.get(0).indexOf(numero_matricula);
-            JOptionPane.showMessageDialog(null,"¡¡Estudiante encontrado!!:\n"+registro.get(0).get(posicion)+"\n"+registro.get(1).get(posicion)+"\n"+registro.get(2).get(posicion),"BUSQUEDA",JOptionPane.INFORMATION_MESSAGE);
+        if (LISTADO.get(0).contains(numero_matricula)) {
+            posicion=LISTADO.get(0).indexOf(numero_matricula);
+            JOptionPane.showMessageDialog(null,"¡¡¡Estudiante encontrado!!!:\n"+LISTADO.get(0).get(posicion)+"\n"+LISTADO.get(1).get(posicion)+"\n"+LISTADO.get(2).get(posicion),"BUSQUEDA",JOptionPane.INFORMATION_MESSAGE);
             String pregunta;
             pregunta=JOptionPane.showInputDialog("¿Desea continuar?:(Y/N)");
             if (pregunta.equalsIgnoreCase("Y")) {
@@ -170,7 +170,7 @@ private javax.swing.JPanel pannel;
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "¡Estudiante no encontrado!","AVISO",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "¡¡¡Estudiante no encontrado!!!","AVISO",JOptionPane.WARNING_MESSAGE);
             flag=false;
         }
         }
@@ -183,24 +183,24 @@ private javax.swing.JPanel pannel;
         boolean flag;
         flag=true;
         while(flag==true){
-        numero_matricula=JOptionPane.showInputDialog(null,"Ingrese el numero de matricula del estudiante que desea modificar:","REGISTRO",JOptionPane.PLAIN_MESSAGE);
-        if (registro.get(0).contains(numero_matricula)) {
-            posicion=registro.get(0).indexOf(numero_matricula);
+        numero_matricula=JOptionPane.showInputDialog(null,"Ingrese el numero de matricula del estudiante que desea modificar:","LISTADO",JOptionPane.PLAIN_MESSAGE);
+        if (LISTADO.get(0).contains(numero_matricula)) {
+            posicion=LISTADO.get(0).indexOf(numero_matricula);
             String cambio;
             String cambio_nombre;
             String cambio_apellidos;
             cambio=JOptionPane.showInputDialog("¿Que desea modificar?\nNombre(1)\nApellidos(2)");
             if (cambio.equals("1")) {
-                cambio_nombre=JOptionPane.showInputDialog(null,"Ingrese el nuevo nombre a modificar:","REGISTRO",JOptionPane.PLAIN_MESSAGE);
-                registro.get(1).remove(posicion);
-                registro.get(1).add(posicion,cambio_nombre);
+                cambio_nombre=JOptionPane.showInputDialog(null,"Ingrese el nuevo nombre a modificar:","LISTADO",JOptionPane.PLAIN_MESSAGE);
+                LISTADO.get(1).remove(posicion);
+                LISTADO.get(1).add(posicion,cambio_nombre);
             }
             if (cambio.equals("2")) {
                 cambio_apellidos=JOptionPane.showInputDialog("Ingrese un nombre nuevo:");
-                registro.get(2).remove(posicion);
-                registro.get(2).add(posicion,cambio_apellidos);
+                LISTADO.get(2).remove(posicion);
+                LISTADO.get(2).add(posicion,cambio_apellidos);
             }
-            JOptionPane.showMessageDialog(null,"¡Cambio realizado!:\n"+registro.get(0).get(posicion)+"\n"+registro.get(1).get(posicion)+"\n"+registro.get(2).get(posicion));
+            JOptionPane.showMessageDialog(null,"¡¡¡Cambio realizado!!!:\n"+LISTADO.get(0).get(posicion)+"\n"+LISTADO.get(1).get(posicion)+"\n"+LISTADO.get(2).get(posicion));
             String pregunta;
             pregunta=JOptionPane.showInputDialog("¿Desea continuar?:(Y/N)");
             if (pregunta.equalsIgnoreCase("y")) {
@@ -211,7 +211,7 @@ private javax.swing.JPanel pannel;
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Estudiante no encontrado!","BUSQUEDA",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "¡¡¡Estudiante no encontrado!!!","BUSQUEDA",JOptionPane.WARNING_MESSAGE);
             flag=false;
         }
         }
@@ -226,17 +226,17 @@ private javax.swing.JPanel pannel;
         flag=true;
         while(flag==true){
         numero_matricula=JOptionPane.showInputDialog("Ingrese el numero de matricula del estudiante que desea remover:");
-        if (registro.get(0).contains(numero_matricula)) {
-            posicion=registro.get(0).indexOf(numero_matricula);
-            JOptionPane.showMessageDialog(null,"¡Estudiante encontrado!:\n"+registro.get(0).get(posicion)+"\n"+registro.get(1).get(posicion)+"\n"+registro.get(2).get(posicion));
+        if (LISTADO.get(0).contains(numero_matricula)) {
+            posicion=LISTADO.get(0).indexOf(numero_matricula);
+            JOptionPane.showMessageDialog(null,"¡¡¡Estudiante encontrado!!!:\n"+LISTADO.get(0).get(posicion)+"\n"+LISTADO.get(1).get(posicion)+"\n"+LISTADO.get(2).get(posicion));
             String eliminar;
             eliminar=JOptionPane.showInputDialog("¿Desea eliminar al estudiante?:(Y/N)");
 
             if (eliminar.equalsIgnoreCase("Y")) {
-               registro.get(0).remove(posicion);
-               registro.get(1).remove(posicion);
-               registro.get(2).remove(posicion);
-               JOptionPane.showMessageDialog(null, "Estudiante removido!");
+               LISTADO.get(0).remove(posicion);
+               LISTADO.get(1).remove(posicion);
+               LISTADO.get(2).remove(posicion);
+               JOptionPane.showMessageDialog(null, "¡¡¡Estudiante removido!!!");
             }
 
             String pregunta;
@@ -249,7 +249,7 @@ private javax.swing.JPanel pannel;
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "¡Estudiante no encontrado!","BUSQUEDA",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "¡¡¡Estudiante no encontrado!!!","BUSQUEDA",JOptionPane.WARNING_MESSAGE);
             flag=false;
         }
         }
